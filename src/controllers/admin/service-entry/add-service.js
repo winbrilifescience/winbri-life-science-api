@@ -37,13 +37,14 @@ module.exports = async (req, res) => {
 		paymentMode: Joi.string()
 			.valid(...Object.values(paymentModes))
 			.optional(),
-		receivedAmount: Joi.number().min(0).optional(),
+		upiReceivedAmount: Joi.number().min(0).optional(),
+		cashReceivedAmount: Joi.number().min(0).optional(),
 	});
 
 	const { error } = BodySchema.validate(req.body, { abortEarly: false });
 	if (error) return response(res, error);
 
-	let { serviceName, amount, assignedUsers, healthCheckupAssignments, address, location, mobile, paymentMode, receivedAmount } = req.body;
+	let { serviceName, amount, assignedUsers, healthCheckupAssignments, address, location, mobile, paymentMode, upiReceivedAmount, cashReceivedAmount } = req.body;
 
 	try {
 		const entryNo = await generateSequence('serviceEntry');
@@ -62,7 +63,8 @@ module.exports = async (req, res) => {
 			location,
 			mobile,
 			paymentMode,
-			receivedAmount,
+			upiReceivedAmount,
+			cashReceivedAmount,
 			createdBy: adminAuthData.id,
 			updatedBy: adminAuthData.id,
 		};

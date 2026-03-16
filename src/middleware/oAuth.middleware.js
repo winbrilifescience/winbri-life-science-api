@@ -3,7 +3,7 @@ const response = require('../utils/response');
 const { jwt: ServiceJWT } = require('../services');
 const oAuthConfig = require('../config/oAuthRoute');
 const oAuthRoutes = oAuthConfig.oAuthRoutes;
-const Issuer = 'three_style';
+const Issuer = 'winbri_life_science';
 const Audience = 'oAuth';
 
 const oAuthMiddleware = (req, res, next) => {

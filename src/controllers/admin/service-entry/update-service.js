@@ -39,7 +39,8 @@ module.exports = async (req, res) => {
 		paymentMode: Joi.string()
 			.valid(...Object.values(paymentModes))
 			.optional(),
-		receivedAmount: Joi.number().min(0).optional(),
+		upiReceivedAmount: Joi.number().min(0).optional(),
+		cashReceivedAmount: Joi.number().min(0).optional(),
 		status: Joi.string()
 			.valid(...Object.values(entryStatus))
 			.optional(),
@@ -48,7 +49,7 @@ module.exports = async (req, res) => {
 	const { error } = BodySchema.validate(req.body, { abortEarly: false });
 	if (error) return response(res, error);
 
-	let { id, serviceName, amount, assignedUsers, healthCheckupAssignments, address, location, mobile, paymentMode, receivedAmount, status } = req.body;
+	let { id, serviceName, amount, assignedUsers, healthCheckupAssignments, address, location, mobile, paymentMode, upiReceivedAmount, cashReceivedAmount, status } = req.body;
 
 	try {
 		let payload = {
@@ -60,7 +61,8 @@ module.exports = async (req, res) => {
 			location,
 			mobile,
 			paymentMode,
-			receivedAmount,
+			upiReceivedAmount,
+			cashReceivedAmount,
 			status,
 			updatedBy: adminAuthData.id,
 		};

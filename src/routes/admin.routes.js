@@ -21,10 +21,10 @@ adminRoute.post('/login-with-otp', controller.loginWithOTPController.Login);
 adminRoute.post('/login-with-otp/verify', controller.loginWithOTPController.VerifyOTP);
 adminRoute.post('/oauth', controller.oAuthController);
 
-adminRoute.post('/create-admin', controller.createAccountController);
 // * Middleware
 adminRoute.use(adminAuthenticationMiddleware);
 
+adminRoute.post('/create-admin', controller.createAccountController);
 // -- Authorized Routes --
 
 // Account
@@ -54,10 +54,6 @@ adminRoute.get('/user/get-student-user', controller.getStudentUserController);
 adminRoute.post('/service-entry/add', controller.AddServiceController);
 adminRoute.get('/service-entry/get', controller.getServiceController);
 adminRoute.post('/service-entry/update', controller.updateServiceController);
-// adminRoute.put('/service-entry/:id', serviceEntryController.update);
-// adminRoute.delete('/service-entry/:id', serviceEntryController.remove);
-// adminRoute.get('/service-entry', serviceEntryController.list);
-// adminRoute.get('/service-entry/summary', serviceEntryController.summary);
-// adminRoute.get('/service-entry/:id', serviceEntryController.getById);
+adminRoute.post('/service-entry/remove', controller.removeServiceController);
 
 module.exports = adminRoute;

@@ -18,7 +18,9 @@ module.exports = async (req, res) => {
 	const { full_name, email, mobile, type, password } = req.body;
 	const { adminAuthData } = req.headers;
 
-	if (adminAuthData.type != adminType.master) return response(res, httpStatus.FORBIDDEN, 'You are not authorized to perform this action');
+	console.log('adminAuthData :- ', adminAuthData);
+
+	if (adminAuthData?.type != adminType.master) return response(res, httpStatus.FORBIDDEN, 'You are not authorized to perform this action');
 
 	var payload = {
 		full_name,

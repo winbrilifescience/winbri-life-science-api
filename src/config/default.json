@@ -16,11 +16,11 @@
 		"salt": 6
 	},
 	"cors": {
-		"whitelist": ["https://threestyle.in", "https://admin.threestyle.in"]
+		"whitelist": ["https://threestyleeeee.in", "https://admin.threestyleeeee.in"]
 	},
 	"awsSDK": {
-		"region": "ap-south-1",
-		"bucketName": "three-style",
+		"region": "ap-south-11111",
+		"bucketName": "three-styleeeee",
 		"directory": {
 			"files": "files",
 			"products": "products",
@@ -65,7 +65,7 @@
 			"application/mp4"
 		]
 	},
-	"filesHost": "https://files.threestyle.in",
+	"filesHost": "https://files.threestyleeeee.in",
 	"healthCheckPaths": ["/", "/health", "/_ah/start"],
 	"ignoreLogPaths": ["/favicon.ico", "/images/icons/gear.png"]
 }

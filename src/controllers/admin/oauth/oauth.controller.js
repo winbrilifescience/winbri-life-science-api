@@ -5,7 +5,7 @@ const process = require('process');
 const oAuthJWTSecret = process.env.OAUTH_JWT_SECRET;
 const { jwt } = require('../../../services');
 const moment = require('moment');
-const Issuer = 'three_style';
+const Issuer = 'winbri_life_science';
 const Audience = 'oAuth';
 
 /**

@@ -25,14 +25,16 @@ module.exports.serviceTypes = {
 /** Service entry status */
 module.exports.entryStatus = {
 	pending: 'Pending',
-	inProgress: 'In Progress',
 	completed: 'Completed',
+	cancelled: 'Cancelled',
+	deleted: 'Deleted',
 };
 
 /** Payment modes */
 module.exports.paymentModes = {
 	cash: 'Cash',
 	upi: 'UPI',
+	upiAndCash: 'UPI & Cash',
 	card: 'Card',
 	online: 'Online',
 	other: 'Other',

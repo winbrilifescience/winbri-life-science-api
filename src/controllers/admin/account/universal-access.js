@@ -7,7 +7,7 @@ const httpStatus = require('http-status'),
 	response = require('../../../utils/response');
 
 const Platforms = {
-	three_style: 'three_style',
+	winbri_life_science: 'winbri_life_science',
 };
 
 module.exports = async (req, res) => {
@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
 	try {
 		let accounts_access = [
 			{
-				platform: Platforms.three_style,
+				platform: Platforms.winbri_life_science,
 				access: req.headers.authorization,
 			},
 		];

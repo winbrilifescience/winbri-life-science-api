@@ -10,11 +10,12 @@ const { ObjectId } = require('mongoose').Types;
 const { ServiceEntryRepo } = require('../../../database');
 const { PaginationHelper, MongoDBQueryBuilder } = require('../../../helpers');
 const { ValidationError } = require('../../../core/errors');
+const { entryStatus } = require('../../../common/constants');
 
 const SEARCH_FIELDS = ['_id', 'entryNo', 'mobile', 'serviceName', 'paymentMode', 'status'];
 
 const getServiceEntries = async (params = {}) => {
-	const findQuery = {};
+	const findQuery = { status: { $ne: entryStatus.deleted } };
 
 	if (params.id) {
 		if (!ObjectId.isValid(params.id)) throw new ValidationError('Invalid Service Entry id');
@@ -37,7 +38,15 @@ const getServiceEntries = async (params = {}) => {
 
 	const [totalCount, data] = await Promise.all([
 		ServiceEntryRepo.countDocuments(findQuery),
-		ServiceEntryRepo.find(findQuery).populate('assignedUsers', 'name mobile').skip(pagination.skip).limit(pagination.limit).sort(sortQuery).lean(),
+		ServiceEntryRepo.find(findQuery)
+			.populate([
+				{ path: 'assignedUsers', select: 'full_name mobile' },
+				{ path: 'healthCheckupAssignments.user', select: 'full_name mobile' },
+			])
+			.skip(pagination.skip)
+			.limit(pagination.limit)
+			.sort(sortQuery)
+			.lean(),
 	]);
 
 	const paginationInfo = PaginationHelper.getPaginationInfo(totalCount, params);

@@ -39,3 +39,4 @@ module.exports.productTrackingStatusController = require('./products/set-trackin
 module.exports.AddServiceController = require('./service-entry/add-service');
 module.exports.getServiceController = require('./service-entry/get-service');
 module.exports.updateServiceController = require('./service-entry/update-service');
+module.exports.removeServiceController = require('./service-entry/remove-service');
