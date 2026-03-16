@@ -6,7 +6,7 @@
  */
 
 const firebaseAdmin = require('firebase-admin'),
-	{ 'firebase-admin-sdk': firebase_admin_sdk } = require('../../config/secrets'),
+	{ 'firebase-admin-sdk': firebase_admin_sdk } = require('../../config/secrets.json'),
 	logger = require('../winston'),
 	{ logging } = require('../../config/default.json');
 const process = require('process');
