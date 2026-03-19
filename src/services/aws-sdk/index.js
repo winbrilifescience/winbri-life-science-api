@@ -6,7 +6,9 @@
 
 const AWS_S3 = require('@aws-sdk/client-s3');
 const { awsSDK: awsSDKConfig } = require('../../config/default.json');
-const { awsSDK: awsSDKSecret } = require('../../config/secrets.json');
+// const { awsSDK: awsSDKSecret } = require('../../config/secrets.json');
+const secrets = require('../../config/secrets');
+const { awsSDK: awsSDKSecret } = secrets;
 
 const S3Client = new AWS_S3.S3Client({
 	region: awsSDKConfig.region,
