@@ -5,9 +5,12 @@
  * @tutorial https://www.npmjs.com/package/firebase-admin#documentation
  */
 
-const firebaseAdmin = require('firebase-admin'),
-	{ 'firebase-admin-sdk': firebase_admin_sdk } = require('../../config/secrets.json'),
-	logger = require('../winston'),
+const firebaseAdmin = require('firebase-admin');
+// const { 'firebase-admin-sdk': firebase_admin_sdk } = require('../../config/secrets.json')
+const secrets = require('../../config/secrets.js');
+const firebase_admin_sdk = secrets['firebase-admin-sdk'];
+
+const logger = require('../winston'),
 	{ logging } = require('../../config/default.json');
 const process = require('process');
 
@@ -20,6 +23,10 @@ const CustomLogger = logger.__instance({
 const Credentials = firebase_admin_sdk[process.env.NODE_ENV];
 if (!Credentials || !Credentials.sdk || !Credentials.databaseURL) {
 	CustomLogger.error('SDK or Database URL Missing');
+}
+
+if (Credentials?.sdk?.private_key) {
+	Credentials.sdk.private_key = Credentials.sdk.private_key.replace(/\\n/g, '\n');
 }
 
 try {
